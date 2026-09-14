@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://the-learner-zone.jammy-mango-9071.chatgpt.site"),
+  metadataBase: new URL("https://the-learner-zone.cropintelligencebrai.chatgpt.site"),
   openGraph: { type: "website", siteName: "The Learner Zone", title: "The Learner Zone — Learn Driving With Confidence", description: "From your first time behind the wheel to driving independently. Learn, practice, test, drive." },
   title: { default: "The Learner Zone — Learn Driving With Confidence", template: "%s | The Learner Zone" },
   description: "Your journey from complete beginner to confident driver. Explore interactive car controls, driving lessons, road signs and a free practice test.",
@@ -23,4 +23,5 @@ export default function RootLayout({
     </html>
   );
 }
+
 
