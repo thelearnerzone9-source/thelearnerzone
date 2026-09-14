@@ -1,0 +1,12 @@
+THE LEARNER ZONE — ASSET CREDITS
+
+Detailed exterior vehicle: Ferrari 458 Italia by vicent091036, distributed in the official Three.js car-materials example.
+Example: https://threejs.org/examples/webgl_materials_car.html
+Original author/model reference: https://sketchfab.com/models/57bf6cc56931426e87494f554df1dab6
+Source asset: https://github.com/mrdoob/three.js/blob/dev/examples/models/gltf/ferrari.glb
+Changes: paint/material treatment, learner roof plate, scale and environment integration.
+The accompanying Three.js distribution notice is preserved in three-license.txt.
+This is an independent educational concept; no vehicle manufacturer affiliation or endorsement is implied. The manual cockpit lesson is a separate schematic and does not describe the exterior model's controls.
+
+Draco decoder: distributed with Three.js; see draco-license.txt.
+All road environments, learning controls and fallback-car geometry are original to this project.

@@ -1,0 +1,2 @@
+"use client";
+export default function ErrorPage({reset}:{reset:()=>void}){return <main className="section"><div className="eyebrow">LET’S TAKE A MOMENT</div><h1>We hit a bump in the road.</h1><p className="body-copy">The page could not load. Try again, or return to the beginning.</p><div className="hero-actions"><button className="button lime" onClick={reset}>Try again</button><a className="button outline" href="/">Return home</a></div></main>}
