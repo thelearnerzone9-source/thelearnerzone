@@ -19,7 +19,7 @@ Use `npm ci`, `npm run dev`, `npm run build`, and `npx tsc --noEmit`. The develo
 - `/lessons`: local lesson preferences with downloadable text plan
 
 ## Content and integration boundaries
-The source brief ended at the highway section. Country-specific regulations were not provided. Content uses general beginner guidance, with explicitly labelled UK references for regulatory examples. Vehicle controls and parking paths are conceptual and must not be interpreted as universal vehicle-specific instructions.
+The source brief ended at the highway section. The user subsequently confirmed India and requested an Indian car visual. This visual update does not constitute a full India regulatory-content review. Content uses general beginner guidance, with explicitly labelled UK references for regulatory examples. Vehicle controls and parking paths are conceptual and must not be interpreted as universal vehicle-specific instructions.
 
 There is no instructor inventory, availability, payment or booking provider. The lesson planner explicitly states that it is a local draft and does not make a booking. Connect an authorized real provider before enabling submissions. No personal information is sent by the planner.
 
@@ -28,4 +28,4 @@ The supplied domain is thelearnerzone.com. DNS ownership and domain connection h
 ## Rendering and accessibility
 Three.js is lazy-loaded near the viewport. Resolution is capped, offscreen/hidden-tab rendering pauses, shadows use smaller maps on touch devices, and reduced-motion preferences disable nonessential motion. Ordinary buttons provide equivalent lesson selection when WebGL fails. Components clean up geometries, materials and renderers. Keyboard-operable Radix controls are used for tabs, sliders, dialogs and answer choices.
 
-The detailed exterior vehicle is the Ferrari 458 Italia model by vicent091036 distributed with the official Three.js example, with new material treatment and a learner plate. Source and attribution are in `public/credits/assets.txt`; Three.js and Draco distribution licenses are retained. The generic manual cockpit and environments are original educational schematics, separate from that exterior model. A procedural learner-car fallback is retained. No manufacturer endorsement is implied. Scenes unmount when far from the viewport to release their rendering resources.
+The main visual is an AI-generated Indian-market Maruti Suzuki Swift learner-car illustration, served as responsive WebP (214 KB desktop, 51 KB mobile). An optional 3D practice view and all educational driving scenes use original generic compact hatchback geometry. The cockpit is a right-hand-drive manual-car schematic; clutch, brake and accelerator remain in left-to-right order. Vehicle-specific reference points vary. No manufacturer endorsement is implied. Scenes unmount when far from the viewport to release rendering resources.

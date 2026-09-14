@@ -20,3 +20,11 @@ Verified against the local rendered site on 14–15 September 2026.
 - WebMCP `open_driving_lesson` registration, schema, valid lesson 3, visible-state update and invalid lesson 99 rejection were tested in the browser.
 
 Limits: no real phone hardware or full Lighthouse audit was available in this QA pass. WebGL failure and reduced-motion behavior were reviewed in code, not forced with browser environment overrides. No real booking service, instructor availability, payment workflow or domain DNS is connected. The detailed exterior vehicle asset was visually verified after the first QA pass. Cockpit and parking scenes remain conceptual educational illustrations, not vehicle-specific simulations. The original brief ends midway through the highway section.
+
+## India car visual update — 2026-09-15
+- Replaced Ferrari hero with an AI-generated Maruti Suzuki Swift learner illustration, Indian-style registration and L plate; responsive WebP assets are 214,072 / 51,230 bytes.
+- Removed Ferrari GLB and its unused Draco decoder. Optional 3D practice view uses original compact hatchback geometry.
+- Moved driving seat, wheel, instruments and pedals to the right; pedal sequence remains clutch/brake/accelerator left to right.
+- Strict TypeScript check and production build passed. Desktop 1440 and mobile 390/320 visual checks completed; mobile image cropping and control spacing corrected. 3D toggle worked; no browser errors were reported.
+- Publishing blocked: Sites connector returned HTTP 401 token_revoked during credential renewal. No source push or deployment occurred. Reconnect Sites and resume publishing this local change.
+- Existing regulatory references have not been comprehensively localized to India in this car-visual update.

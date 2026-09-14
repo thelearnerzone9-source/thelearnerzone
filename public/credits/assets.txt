@@ -1,12 +1,8 @@
 THE LEARNER ZONE — ASSET CREDITS
 
-Detailed exterior vehicle: Ferrari 458 Italia by vicent091036, distributed in the official Three.js car-materials example.
-Example: https://threejs.org/examples/webgl_materials_car.html
-Original author/model reference: https://sketchfab.com/models/57bf6cc56931426e87494f554df1dab6
-Source asset: https://github.com/mrdoob/three.js/blob/dev/examples/models/gltf/ferrari.glb
-Changes: paint/material treatment, learner roof plate, scale and environment integration.
-The accompanying Three.js distribution notice is preserved in three-license.txt.
-This is an independent educational concept; no vehicle manufacturer affiliation or endorsement is implied. The manual cockpit lesson is a separate schematic and does not describe the exterior model's controls.
+Hero: AI-generated illustration of an Indian-market Maruti Suzuki Swift learner car, created for this project. Illustrative registration plate. Optimized WebP desktop and mobile assets.
+This independent educational concept has no vehicle manufacturer affiliation or endorsement.
 
-Draco decoder: distributed with Three.js; see draco-license.txt.
-All road environments, learning controls and fallback-car geometry are original to this project.
+Interactive practice cars: original compact hatchback geometry authored for this project, not a manufacturer-specific 3D model. Cockpit: original right-hand-drive manual-car schematic. Reference points and controls vary by vehicle.
+All road environments and learning controls are original to this project.
+Three.js distribution notice: three-license.txt.
