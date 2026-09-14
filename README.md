@@ -19,7 +19,7 @@ Use `npm ci`, `npm run dev`, `npm run build`, and `npx tsc --noEmit`. The develo
 - `/lessons`: local lesson preferences with downloadable text plan
 
 ## Content and integration boundaries
-The source brief ended at the highway section. The user subsequently confirmed India and requested an Indian car visual. This visual update does not constitute a full India regulatory-content review. Content uses general beginner guidance, with explicitly labelled UK references for regulatory examples. Vehicle controls and parking paths are conceptual and must not be interpreted as universal vehicle-specific instructions.
+The source brief ended at the highway section. The user subsequently confirmed India and requested an Indian car visual and Indian road-rules guidance. Content now uses Indian left-hand-road guidance, national driving-regulations references, and Indian traffic-police sign/marking guidance. Vehicle controls and parking paths remain conceptual and must not be interpreted as universal vehicle-specific instructions.
 
 There is no instructor inventory, availability, payment or booking provider. The lesson planner explicitly states that it is a local draft and does not make a booking. Connect an authorized real provider before enabling submissions. No personal information is sent by the planner.
 
