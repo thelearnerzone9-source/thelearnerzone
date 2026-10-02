@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
+import { siteDescription, siteName, siteUrl } from "@/lib/site";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://the-learner-zone.cropintelligencebrai.chatgpt.site"),
-  openGraph: { type: "website", siteName: "The Learner Zone", title: "The Learner Zone — Learn Driving With Confidence", description: "From your first time behind the wheel to driving independently. Learn, practice, test, drive." },
-  title: { default: "The Learner Zone — Learn Driving With Confidence", template: "%s | The Learner Zone" },
-  description: "Your journey from complete beginner to confident driver. Explore interactive car controls, driving lessons, road signs and a free practice test.",
+  metadataBase: new URL(siteUrl),
+  title: { default: `${siteName} | Learn Driving in India`, template: `%s | ${siteName}` },
+  description: siteDescription,
   icons: {
     icon: "/favicon.svg",
     shortcut: "/favicon.svg",
@@ -18,7 +18,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en-IN">
       <body className="antialiased">{children}</body>
     </html>
   );

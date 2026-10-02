@@ -2,5 +2,13 @@
   "framework": null,
   "buildCommand": "npm run build",
   "outputDirectory": "dist/client",
-  "cleanUrls": true
+  "cleanUrls": true,
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "www.thelearnerzone.in" }],
+      "destination": "https://thelearnerzone.in/:path*",
+      "permanent": true
+    }
+  ]
 }

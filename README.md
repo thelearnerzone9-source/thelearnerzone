@@ -1,6 +1,6 @@
 # The Learner Zone
 
-A responsive driving-learning site with Three.js vehicle and environment geometry, interactive lessons, a 13-stage learning road, road signs, a practice test, and a local lesson planner.
+A responsive driving-learning site with Three.js vehicle and environment geometry, interactive lessons, a 13-stage learning road, road signs, a practice test, and a WhatsApp lesson enquiry form.
 
 ## Repository inspection
 The supplied workspace was empty. There was no framework, source, package manager, configuration, backend, authentication, deployment setup or asset library to preserve.
@@ -16,14 +16,17 @@ Use `npm ci`, `npm run dev`, `npm run build`, and `npx tsc --noEmit`. The develo
 - `/learn?lesson=0`: lessons 0–12; review progress is stored on the current device
 - `/signs`: searchable sign examples and traffic-light lesson
 - `/test`: 10-question practice with answer explanations and results
-- `/lessons`: local lesson preferences with downloadable text plan
+- `/lessons`: contact details and lesson preferences, with a WhatsApp enquiry, local draft and downloadable text plan
 
 ## Content and integration boundaries
 The source brief ended at the highway section. The user subsequently confirmed India and requested an Indian car visual and Indian road-rules guidance. Content now uses Indian left-hand-road guidance, national driving-regulations references, and Indian traffic-police sign/marking guidance. Vehicle controls and parking paths remain conceptual and must not be interpreted as universal vehicle-specific instructions.
 
-There is no instructor inventory, availability, payment or booking provider. The lesson planner explicitly states that it is a local draft and does not make a booking. Connect an authorized real provider before enabling submissions. No personal information is sent by the planner.
+There is no instructor inventory, availability, payment or automatic booking provider. The enquiry form validates the customer's details and opens WhatsApp with a prepared message; the customer must press Send in WhatsApp. Sending an enquiry does not confirm a lesson. Local draft and download options are also available. Public business contact links are configured in `lib/contact.ts`.
 
-The supplied domain is thelearnerzone.com. DNS ownership and domain connection have not been configured. Private Sites deployment is independent of that domain.
+The production domain is `https://thelearnerzone.in`, hosted by the `thelearnerzone` Vercel project in the authorized `driving4` team. DNS is managed in GoDaddy. `vercel.json` redirects `www` to the apex domain while preserving the requested path. Production builds export to `dist/client`.
+
+## Search discovery
+All five routes have their own title, description and canonical URL through `lib/site.ts`. The homepage includes WebSite and Organization structured data. `app/robots.txt` permits crawling and references `app/sitemap.xml`. These files are static because this Vinext static export does not emit dynamic metadata routes; verify both files exist in `dist/client` after a build. Search Console verification and sitemap submission are deferred until the owner is ready. These technical settings allow discovery but do not guarantee Google indexing or ranking.
 
 ## Rendering and accessibility
 Three.js is lazy-loaded near the viewport. Resolution is capped, offscreen/hidden-tab rendering pauses, shadows use smaller maps on touch devices, and reduced-motion preferences disable nonessential motion. Ordinary buttons provide equivalent lesson selection when WebGL fails. Components clean up geometries, materials and renderers. Keyboard-operable Radix controls are used for tabs, sliders, dialogs and answer choices.
