@@ -10,6 +10,7 @@ type ErrorField = 'name' | 'phone' | 'city' | 'date';
 const initial: Plan = {name: '', phone: '', city: '', experience: 'Complete beginner', transmission: 'Manual', date: '', notes: ''};
 
 export default function LessonRequestForm() {
+  const [ready, setReady] = useState(false);
   const [plan, setPlan] = useState<Plan>(initial);
   const [status, setStatus] = useState('');
   const [error, setError] = useState<{field?: ErrorField; message: string} | null>(null);
@@ -34,6 +35,7 @@ export default function LessonRequestForm() {
         }
       }
     } catch { /* The form remains usable when browser storage is unavailable. */ }
+    setReady(true);
   }, []);
 
   function update<K extends keyof Plan>(key: K, value: Plan[K]) {
@@ -99,7 +101,7 @@ export default function LessonRequestForm() {
   }
 
   return (
-    <form id="lesson-request" aria-labelledby="enquiry-heading" ref={formRef} className="booking-form" action={whatsappUrl} method="get" target="_blank" rel="noopener noreferrer" onSubmit={sendWhatsApp} noValidate>
+    <form id="lesson-request" aria-labelledby="enquiry-heading" ref={formRef} className="booking-form" action={whatsappUrl} method="get" target="_blank" rel="noopener noreferrer" onSubmit={sendWhatsApp} noValidate={ready}>
       <div className="booking-form-heading"><span className="eyebrow">YOUR CONTACT DETAILS</span><h3 id="enquiry-heading">Request a driving lesson</h3><p>Share your details and we’ll help you plan your next step.</p></div>
       <input type="hidden" name="text" value={message}/>
       <label htmlFor="lesson-name">Your name
@@ -132,11 +134,12 @@ export default function LessonRequestForm() {
       {error && <p id="booking-error" role="alert">{error.message}</p>}
       {status && <div className="saved-notice" role="status"><CheckCircle2 size={20} aria-hidden="true"/><span>{status}</span></div>}
       <div className="test-actions">
-        <button className="button lime" type="submit"><MessageCircle size={16} aria-hidden="true"/> Continue to WhatsApp</button>
-        <button className="button outline" type="button" onClick={save}>Save details <ArrowRight size={16} aria-hidden="true"/></button>
-        <button type="button" className="button outline" onClick={download}><Download size={16} aria-hidden="true"/> Download</button>
+        <button className="button lime" type="submit" disabled={!ready}><MessageCircle size={16} aria-hidden="true"/> Continue to WhatsApp</button>
+        <button className="button outline" type="button" onClick={save} disabled={!ready}>Save details <ArrowRight size={16} aria-hidden="true"/></button>
+        <button type="button" className="button outline" onClick={download} disabled={!ready}><Download size={16} aria-hidden="true"/> Download</button>
       </div>
       <p className="fine-print">WhatsApp opens with your contact details and lesson preferences. Your request reaches us after you tap Send. We’ll confirm availability with you.</p>
+      <noscript><p className="fine-print">Enable JavaScript to fill in this form, or use our WhatsApp contact link to message us directly.</p></noscript>
     </form>
   );
 }
