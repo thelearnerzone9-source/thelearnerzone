@@ -1,8 +1,33 @@
 "use client";
-import {useEffect,useState} from 'react';
-import {Header,Footer,PageIntro} from './Shell';
-import {RadioGroup,RadioGroupItem} from '@/components/ui/radio-group';
-import {ArrowRight,Download,CheckCircle2,Calendar,ShieldCheck,MapPin} from 'lucide-react';
-type Plan={city:string;experience:string;transmission:string;date:string;notes:string};
-const initial:Plan={city:'',experience:'Complete beginner',transmission:'Manual',date:'',notes:''};
-export default function Lessons(){const[plan,setPlan]=useState<Plan>(initial);const[saved,setSaved]=useState(false);const[error,setError]=useState('');const[minDate,setMinDate]=useState('');useEffect(()=>{const d=new Date();setMinDate(`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`);try{const s=localStorage.getItem('tlz-lesson-plan');if(s){const p=JSON.parse(s);if(typeof p.city==='string'&&typeof p.date==='string'&&['Manual','Automatic'].includes(p.transmission)&&['Complete beginner','Some experience','Returning to driving'].includes(p.experience))setPlan({...initial,...p})}}catch{}},[]);function update<K extends keyof Plan>(k:K,v:Plan[K]){setPlan({...plan,[k]:v});setSaved(false);setError('')}function save(e:React.FormEvent){e.preventDefault();if(!plan.city.trim()){setError('Enter a city or area for your lesson.');return}if(plan.date&&plan.date<minDate){setError('Choose today or a future date.');return}try{localStorage.setItem('tlz-lesson-plan',JSON.stringify(plan));setSaved(true)}catch{setError('This browser cannot save your plan. You can still download a copy.')}}function download(){const text=`THE LEARNER ZONE — LESSON PLAN\n\nThis is a personal plan, not a booking confirmation.\n\nArea: ${plan.city}\nExperience: ${plan.experience}\nTransmission: ${plan.transmission}\nPreferred date: ${plan.date||'Flexible'}\nGoals: ${plan.notes||'Build confidence behind the wheel.'}\n\nDiscuss availability, price and lesson arrangements directly with your chosen instructor.`;const url=URL.createObjectURL(new Blob([text],{type:'text/plain'}));const a=document.createElement('a');a.href=url;a.download='my-driving-lesson-plan.txt';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)}return <><Header/><main><PageIntro kicker="YOUR FIRST REAL-WORLD MILE" title="Let’s get you behind the wheel." description="Prepare a lesson plan to share with your driving instructor. A clear starting point makes the first conversation easier."/><div className="booking-layout"><div><div className="notice"><strong>Instructor booking is not connected yet.</strong><p>Save your preferences on this device or download them. This does not reserve a lesson or send a request to an instructor.</p></div><form className="booking-form" onSubmit={save}><label>City or area<input value={plan.city} onChange={e=>update('city',e.target.value)} placeholder="Where would you like to learn?" maxLength={100} required/></label><fieldset><legend>Your experience</legend><RadioGroup value={plan.experience} onValueChange={v=>update('experience',v)}>{['Complete beginner','Some experience','Returning to driving'].map(v=><label className="radio-label" key={v}><RadioGroupItem value={v}/>{v}</label>)}</RadioGroup></fieldset><fieldset><legend>Transmission</legend><RadioGroup className="inline-radio" value={plan.transmission} onValueChange={v=>update('transmission',v)}>{['Manual','Automatic'].map(v=><label className="radio-label" key={v}><RadioGroupItem value={v}/>{v}</label>)}</RadioGroup></fieldset><label>Preferred date <span className="optional">Optional</span><input type="date" min={minDate} value={plan.date} onChange={e=>update('date',e.target.value)}/></label><label>What would you like help with? <span className="optional">Optional</span><textarea maxLength={1000} rows={4} placeholder="For example: I’m nervous about starting, or I’d like to practise parking." value={plan.notes} onChange={e=>update('notes',e.target.value)}/></label>{error&&<p role="alert">{error}</p>}{saved&&<div className="saved-notice" role="status"><CheckCircle2 size={20}/><span>Lesson plan saved on this device. No lesson has been booked.</span></div>}<div className="test-actions"><button className="button lime" type="submit">Save my lesson plan <ArrowRight size={16}/></button><button type="button" className="button outline" onClick={download}><Download size={16}/> Download</button></div></form></div><aside className="booking-aside"><span className="eyebrow">GOOD THINGS START SMALL</span><h2>Your pace.<br/><span>Your progress.</span></h2>{[[ShieldCheck,'Find the right instructor','Check qualifications, teaching style and whether they offer the transmission you want.'],[MapPin,'Start somewhere comfortable','Discuss a suitable pickup point and a quiet practice area.'],[Calendar,'Know what to expect','Confirm the price, duration, availability and cancellation policy before booking.']].map(([Icon,title,copy])=>{const I=Icon as typeof ShieldCheck;return <div key={String(title)}><I size={25}/><h3>{String(title)}</h3><p>{String(copy)}</p></div>})}</aside></div></main><Footer/></>}
+
+import {Header, Footer, PageIntro, InstagramLink, WhatsAppLink} from './Shell';
+import {Calendar, ShieldCheck, MapPin} from 'lucide-react';
+import LessonRequestForm from './LessonRequestForm';
+
+export default function Lessons() {
+  return <>
+    <Header/>
+    <main>
+      <PageIntro kicker="YOUR FIRST REAL-WORLD MILE" title="Let’s get you behind the wheel." description="Fill in the enquiry form or contact The Learner Zone on WhatsApp and Instagram."/>
+      <div className="booking-layout">
+        <div>
+          <div className="notice">
+            <strong>Send your request on WhatsApp.</strong>
+            <p>Your details are filled into a WhatsApp message for The Learner Zone. Review the message and tap Send to request a lesson.</p>
+          </div>
+          <LessonRequestForm/>
+        </div>
+        <aside className="booking-aside">
+          <span className="eyebrow">CONTACT THE LEARNER ZONE</span>
+          <h2>Your pace.<br/><span>Your progress.</span></h2>
+          <div className="contact-card"><h3>Chat on WhatsApp</h3><p>Ask about driving lessons, availability and getting started.</p><WhatsAppLink/></div>
+          <div className="contact-card"><h3>Find us on Instagram</h3><p>Visit our profile to connect with The Learner Zone.</p><InstagramLink/></div>
+          <div><ShieldCheck size={25}/><h3>A direct request</h3><p>Your completed form becomes a WhatsApp message for The Learner Zone.</p></div>
+          <div><MapPin size={25}/><h3>Start somewhere comfortable</h3><p>Share a suitable pickup area and quiet practice location.</p></div>
+          <div><Calendar size={25}/><h3>Know what to expect</h3><p>Confirm the price, duration, availability and cancellation policy before booking.</p></div>
+        </aside>
+      </div>
+    </main>
+    <Footer/>
+  </>;
+}
